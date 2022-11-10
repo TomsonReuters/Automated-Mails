@@ -1,14 +1,14 @@
 import openpyxl
 import pandas as pd
 
-#Cambiar esta linea segun sea apropiado
+#Leer el archivo deseado
 Excelworkbook = openpyxl.load_workbook('c:/misexcel/miarchivoexcel.xlsx')
 Excelsheet=Excelworkbook.active
 
-#obtener los titulos
+#Obtengo los titulos
 titulos = next(Excelsheet.values)[0:]
 
-#Convertir a Dataframe
+#Convierto a un DataFrame
 dataframe_clientesbanco=pd.DataFrame(Excelsheet.values,columns=titulos)
 
 #Quiero un sub dataset, solo con las columnas que me interesan
@@ -32,8 +32,7 @@ dataframe_categorias=dataframe_categorias.drop(dataframe_categorias.index[0])
 print("Gasto max en Servicios: ",dataframe_categorias['SERVICIOS'].max())
 print("Edad promedio clientes: ",dataframe_clientes_subset['EDAD'].mean())
 
-
-#Dos maneras de aplicar funciones estadisticas a filtros por colunas
+#Dos maneras de aplicar funciones estadisticas a filtros por columnas
 #La primera de abajo es la manera "larga"
 #La otra usa el encadenamiento de funciones (cada funcion devuelve un dataframe)
 
